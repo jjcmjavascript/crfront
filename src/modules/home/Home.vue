@@ -20,8 +20,9 @@ import { ref } from 'vue'
 import Carousel from '@/shared/components/carousel/Carousel.vue'
 import MyHeader from '@/shared/components/header/Header.vue'
 import SearchInput from './components/SearchSection.vue'
+import fakedata from '../../../fakedata'
 
-const data = ref([])
+const data = ref(fakedata)
 </script>
 
 <style>
