@@ -4,6 +4,7 @@
       <li><RouterLink to="/companies">Ver todas</RouterLink></li>
       <li><RouterLink to="/companies">Reportar</RouterLink></li>
       <li><RouterLink to="/companies">Iniciar</RouterLink></li>
+      <li><RouterLink to="/company">Puntuar</RouterLink></li>
     </ul>
   </nav>
 </template>
