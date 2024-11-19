@@ -1,4 +1,4 @@
-export const getStyleByScore = (score: number) => {
+export const getStyleByScore = (score) => {
   if (score >= 4.4) {
     return { color:'#2E7D32', name: "bi bi-emoji-heart-eyes" };
   } else if (score >= 4) {

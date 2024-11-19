@@ -1,18 +1,12 @@
 <template>
   <div class="carousel-main" :style="carouselContainerStyle">
-    <div
-      :style="carouselContainerStyle"
-      class="carousel-container"
-      id="slideConitanerRef"
-    >
-      <Slide v-for="d in data" :src="d.url" :title="d.title">
+    <div :style="carouselContainerStyle" class="carousel-container" id="slideConitanerRef">
+      <Slide v-for="d in data" :src="d.url" :title="d.title" :key="d.name">
         <template #icon>
           <RankIcon :score="d.score" />
         </template>
         <template #score>
-          <i
-            class="carousel-text-score"
-            :style="{ color: getStyleByScore(d.score).color }"
+          <i class="carousel-text-score" :style="{ color: getStyleByScore(d.score).color }"
             >Score: {{ d.score }}</i
           >
         </template>
@@ -31,62 +25,45 @@
 </template>
 
 <script setup lang="ts">
-import Slide from "./Slide.vue";
-import RankIcon from "./RankIcon.vue";
-import { ref } from "vue";
-import { getStyleByScore } from "./getStyleByScore";
+import Slide from './Slide.vue'
+import RankIcon from './RankIcon.vue'
+import { ref } from 'vue'
+import { getStyleByScore } from './util/getStyleByScore'
 
-type DataItem = {
-  id: number;
-  title: string;
-  url: string;
-  score: number;
-};
-
-type SlideStyle = {
-  width?: string;
-  heigh?: string;
-};
-
-const props = defineProps<{
-  data: DataItem[];
-  width: string;
-  height: string;
-  slideStyle?: SlideStyle;
-}>();
+const props = defineProps(['width', 'height', 'data'])
 
 const carouselContainerStyle = {
-  display: "flex",
+  display: 'flex',
   width: props.width,
   height: props.height,
-};
+}
 
-const position = ref(0);
+const position = ref(0)
 
 function left() {
-  const item = document.querySelector("#slideConitanerRef");
+  const item = document.querySelector('#slideConitanerRef')
 
   if (item) {
     if (item.scrollLeft === 0) {
-      position.value = props.data.length - 1;
-      item.scrollLeft = item.clientWidth * (props.data.length - 1);
+      position.value = props.data.length - 1
+      item.scrollLeft = item.clientWidth * (props.data.length - 1)
     } else {
-      item.scrollLeft -= item.clientWidth;
-      position.value--;
+      item.scrollLeft -= item.clientWidth
+      position.value--
     }
   }
 }
 
 function right() {
-  const item = document.querySelector("#slideConitanerRef");
+  const item = document.querySelector('#slideConitanerRef')
 
   if (item) {
     if (item.scrollLeft === item.clientWidth * (props.data.length - 1)) {
-      position.value = 0;
-      item.scrollLeft = 0;
+      position.value = 0
+      item.scrollLeft = 0
     } else {
-      item.scrollLeft += item.clientWidth;
-      position.value++;
+      item.scrollLeft += item.clientWidth
+      position.value++
     }
   }
 }
