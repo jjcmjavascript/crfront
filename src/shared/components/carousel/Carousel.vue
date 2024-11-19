@@ -25,10 +25,10 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import Slide from './Slide.vue'
 import RankIcon from './RankIcon.vue'
-import { ref } from 'vue'
-import { getStyleByScore } from './util/getStyleByScore'
+import { getStyleByScore } from './util/getStyleByScore.js'
 
 const props = defineProps(['width', 'height', 'data'])
 
